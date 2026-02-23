@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulut Hastanesi – Doktor Paneli</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/style.css?v=3">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-hospital"></i> Bulut Hastanesi</a>
+            <div class="d-flex">
+                <a href="/giris.html" class="btn btn-outline-light btn-sm">Çıkış Yap</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar py-4">
+                <div class="text-center mb-4 text-white">
+                    <div class="rounded-circle bg-info text-white d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px; font-size: 24px;">DR</div>
+                    <h6 class="mt-3 fw-light" id="docName">Yükleniyor...</h6>
+                </div>
+                <div class="px-3 mt-4">
+                    <a href="#profil"><i class="bi bi-person-badge me-2"></i> Profil</a>
+                    <a href="#bugun"><i class="bi bi-calendar2-check me-2"></i> Bugünkü Randevular</a>
+                    <a href="#muayeneler"><i class="bi bi-clipboard2-pulse me-2"></i> Muayeneler</a>
+                    <a href="#recete-yonet"><i class="bi bi-capsule me-2"></i> Reçete Yönetimi</a>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+
+                <div class="row mb-4 g-3">
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div><p class="text-muted mb-1 fs-6">Bugünkü Randevular</p><h3 class="mb-0 text-primary fw-bold" id="stat-today">0</h3></div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary"><i class="bi bi-calendar-event fs-4"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div><p class="text-muted mb-1 fs-6">Bekleyenler</p><h3 class="mb-0 text-warning fw-bold" id="stat-pending">0</h3></div>
+                                <div class="bg-warning bg-opacity-10 p-3 rounded-circle text-warning"><i class="bi bi-hourglass-split fs-4"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div><p class="text-muted mb-1 fs-6">Tamamlanan</p><h3 class="mb-0 text-success fw-bold" id="stat-completed">0</h3></div>
+                                <div class="bg-success bg-opacity-10 p-3 rounded-circle text-success"><i class="bi bi-check2-all fs-4"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div><p class="text-muted mb-1 fs-6">Yazılan Reçeteler</p><h3 class="mb-0 text-info fw-bold" id="stat-rx">0</h3></div>
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle text-info"><i class="bi bi-file-medical fs-4"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section id="profil" class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-person-badge me-2 text-secondary"></i>Profil Bilgileri</h5>
+                        <button id="btnEditProfile" class="btn btn-outline-secondary btn-sm">Düzenle</button>
+                    </div>
+                    <div class="card-body text-secondary">
+                        <div class="row g-3">
+                            <div class="col-md-6"><strong>Ad Soyad:</strong> <span id="p-fullname" class="text-dark">—</span></div>
+                            <div class="col-md-6"><strong>Poliklinik:</strong> <span id="p-department" class="text-dark">—</span></div>
+                            <div class="col-md-6"><strong>E-posta:</strong> <span id="p-email" class="text-dark">—</span></div>
+                            <div class="col-md-6"><strong>Telefon:</strong> <span id="p-phone" class="text-dark">—</span></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="bugun" class="card mb-4">
+                    <div class="card-header"><h5 class="mb-0"><i class="bi bi-calendar2-check me-2 text-secondary"></i>Yaklaşan Randevular</h5></div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light text-muted small">
+                                <tr>
+                                    <th class="ps-4">TC</th>
+                                    <th>Hasta Adı</th>
+                                    <th>Tarih</th>
+                                    <th>Saat</th>
+                                    <th class="text-center">Durum</th>
+                                    <th class="text-end pe-4">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apptTbody" class="border-top-0"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="muayeneler" class="card mb-4">
+                    <div class="card-header"><h5 class="mb-0"><i class="bi bi-clipboard2-pulse me-2 text-secondary"></i>Geçmiş Muayeneler</h5></div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light text-muted small">
+                                <tr>
+                                    <th class="ps-4">Hasta ve Tarih</th>
+                                    <th>Tanı / Doktor Notu</th>
+                                    <th class="text-center">Durum</th>
+                                    <th class="text-end pe-4">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="examTbody" class="border-top-0"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="recete-yonet" class="card mb-4">
+                    <div class="card-header"><h5 class="mb-0"><i class="bi bi-capsule me-2 text-secondary"></i>Reçete Yönetimi</h5></div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light text-muted small">
+                                <tr>
+                                    <th class="ps-4">Hasta</th>
+                                    <th>Reçete No</th>
+                                    <th>İlaçlar</th>
+                                    <th class="text-center">Durum</th>
+                                    <th class="text-end pe-4">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rxTbody" class="border-top-0"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="prescriptionModal" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center modal-overlay" style="display:none !important;">
+        <div class="card shadow-lg border-0" style="width: 100%; max-width: 650px;">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 border-bottom">
+                <h5 class="mb-0 text-primary fw-bold"><i class="bi bi-file-earmark-medical me-2"></i>Muayene Detayları ve Reçete</h5>
+                <button type="button" onclick="closePrescriptionModal()" class="btn-close shadow-none"></button>
+            </div>
+            <div class="card-body p-4" style="max-height: 80vh; overflow-y: auto;">
+                <form id="prescriptionForm">
+                    <input type="hidden" id="modalApptId">
+
+                    <div class="mb-3">
+                        <label for="m-diagnosis" class="form-label fw-semibold small text-muted">TEŞHİS / TANI</label>
+                        <input type="text" id="m-diagnosis" class="form-control form-control-lg fs-6 shadow-sm" placeholder="Hastalık adını giriniz..." required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="m-description" class="form-label fw-semibold small text-muted">DOKTOR NOTU</label>
+                        <textarea id="m-description" class="form-control shadow-sm" rows="3" placeholder="Muayene bulgularını ve notlarınızı buraya ekleyin..." required></textarea>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3 border">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <label class="form-label fw-bold mb-0 text-secondary"><i class="bi bi-capsule-pill me-2"></i>İlaç Listesi</label>
+                            <button type="button" onclick="addMedicineRow()" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                <i class="bi bi-plus-lg"></i> İlaç Ekle
+                            </button>
+                        </div>
+
+                        <div id="medicineList" class="d-flex flex-column gap-2">
+                        </div>
+                    </div>
+
+                    <div class="text-end mt-4 pt-3 border-top">
+                        <button type="button" onclick="closePrescriptionModal()" class="btn btn-light me-2 px-4">Vazgeç</button>
+                        <button type="submit" class="btn btn-primary px-4 shadow">
+                            <i class="bi bi-check2-circle me-1"></i> Kaydet ve Randevuyu Kapat
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="editProfileModal" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center modal-overlay" style="display:none !important;">
+        <div class="card shadow-lg border-0" style="width: 100%; max-width: 400px;">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0"><i class="bi bi-person-gear me-2"></i>Profili Düzenle</h5>
+                <button type="button" id="btnCloseEditModal" class="btn-close"></button>
+            </div>
+            <div class="card-body p-4">
+                <form id="editProfileForm">
+                    <div class="mb-3">
+                        <label for="e-email" class="form-label text-muted small">E-posta</label>
+                        <input type="email" id="e-email" class="form-control" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="e-phone" class="form-label text-muted small">Telefon</label>
+                        <input type="tel" id="e-phone" class="form-control" required>
+                    </div>
+                    <div class="text-end pt-3 border-top">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script>window.API_BASE = "https://localhost:7185/api";</script>
+
+    <script type="module" src="../js/doktor-panel.js"></script>
+</body>
+</html>

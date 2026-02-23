@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulut Hastanesi - Giriş</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container login-container">
+        <div class="text-center mb-4">
+            <h2 class="text-primary fw-bold">🏥 Bulut Hastanesi</h2>
+            <p class="text-muted">Sisteme hoş geldiniz</p>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-white p-0">
+                <ul class="nav nav-tabs nav-justified" id="loginTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active py-3 fw-semibold" id="tab-login" data-bs-toggle="tab" data-bs-target="#login-panel" type="button" role="tab">Giriş Yap</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link py-3 fw-semibold" id="tab-register" data-bs-toggle="tab" data-bs-target="#register-panel" type="button" role="tab">Kayıt Ol</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body p-4">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="login-panel" role="tabpanel">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="login-username" class="form-label">Kullanıcı Adı</label>
+                                <input id="login-username" name="username" type="text" class="form-control" placeholder="Kullanıcı Adı" required />
+                            </div>
+                            <div class="mb-4">
+                                <label for="login-password" class="form-label">Şifre</label>
+                                <input id="login-password" name="password" type="password" class="form-control" placeholder="Şifre" required />
+                            </div>
+                            <button type="submit" id="loginBtn" class="btn btn-primary w-100 py-2">Giriş Yap</button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="register-panel" role="tabpanel">
+                        <form id="registerForm" novalidate>
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Ad</label>
+                                    <input name="FirstName" type="text" id="fname" class="form-control form-control-sm" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Soyad</label>
+                                    <input name="LastName" type="text" id="lname" class="form-control form-control-sm" required />
+                                </div>
+                            </div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">TC Kimlik No</label>
+                                    <input name="NationalID" type="text" id="tc" maxlength="11" class="form-control form-control-sm" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Doğum Tarihi</label>
+                                    <input name="BirthDate" type="date" id="dob" class="form-control form-control-sm" required />
+                                </div>
+                            </div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">E-posta</label>
+                                    <input name="Email" type="email" id="email" class="form-control form-control-sm" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Telefon</label>
+                                    <input name="PhoneNumber" type="tel" id="phone" class="form-control form-control-sm" required />
+                                </div>
+                            </div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Cinsiyet</label>
+                                    <select name="Gender" id="gender" class="form-select form-select-sm">
+                                        <option value="Erkek">Erkek</option>
+                                        <option value="Kadın">Kadın</option>
+                                        <option value="Belirtilmedi">Belirtilmedi</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Kan Grubu</label>
+                                    <select name="BloodType" id="bloodtype" class="form-select form-select-sm" required>
+                                        <option value="">Seçiniz</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="0+">0+</option>
+                                        <option value="0-">0-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small mb-1">Adres</label>
+                                <textarea name="Address" id="address" rows="2" class="form-control form-control-sm" required></textarea>
+                            </div>
+                            <div class="row g-2 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Kullanıcı Adı</label>
+                                    <input name="UserName" type="text" id="username" class="form-control form-control-sm" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Şifre</label>
+                                    <input name="Password" type="password" id="password" class="form-control form-control-sm" required />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 py-2">Kayıt Ol</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-muted mt-3 small">&copy; 2026 Bulut Hastanesi</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>window.API_BASE = "https://localhost:7185/api";</script>
+    <script src="js/giris.js" defer></script>
+</body>
+</html>

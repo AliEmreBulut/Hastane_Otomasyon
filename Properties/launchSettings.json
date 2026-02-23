@@ -1,0 +1,34 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:54114",
+      "sslPort": 44335
+    }
+  },
+  "profiles": {
+    "Hastane_Otomasyon": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "giris.html",
+      "applicationUrl": "https://localhost:7185;https://localhost:5193",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HTTPS_PORT": "7185",
+        "ASPNETCORE_Kestrel__Certificates__Default__Path": "",
+        "ASPNETCORE_Kestrel__Certificates__Default__Password": ""
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "giris.html",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

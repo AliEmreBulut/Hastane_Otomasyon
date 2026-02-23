@@ -1,0 +1,17 @@
+# Derleme ve yayýn klasörleri
+[Bb]in/
+[Oo]bj/
+out/
+
+# Visual Studio ve editör gizli dosyalarý
+.vs/
+*.user
+*.suo
+
+# Mac kullanýcýlarý için sistem dosyasý (eklemekte fayda var)
+.DS_Store
+
+# Hassas veritabaný þifrelerinin bulunduðu ayar dosyasý
+appsettings.json
+# Eðer Development dosyasýnda da þifre varsa baþýndaki # iþaretini kaldýr:
+# appsettings.Development.json
