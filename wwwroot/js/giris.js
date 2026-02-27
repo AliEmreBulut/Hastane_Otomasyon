@@ -1,5 +1,5 @@
 const API_BASE = "/api";
-const LOGIN_URL = new URL("/api/Login/login", location.origin).href;
+const LOGIN_URL = new URL("/Login/login", location.origin).href;
 
 const PANEL_PATHS = {
     Patient: "/sayfalar/hasta-panel.html",
