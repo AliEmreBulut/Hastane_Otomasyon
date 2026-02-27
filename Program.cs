@@ -21,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             mysqlOptions.EnableRetryOnFailure(
                 maxRetryCount: 5,
                 maxRetryDelay: TimeSpan.FromSeconds(30),
-                errorNumbersToAdd: null); // null olarak ayarlandı
+                errorNumbersToAdd: null);
         }
     ));
 
@@ -31,6 +31,17 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// 1. EKLENEN KISIM: CORS İzinleri Ayarlanıyor
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -87,13 +98,15 @@ await using (var scope = app.Services.CreateAsyncScope())
     }
 }
 
-    // Middleware'ler...
-    app.UseDefaultFiles(); 
-    app.UseStaticFiles();  
+// Middleware'ler...
+app.UseCors("AllowAll");
 
-    app.UseHttpsRedirection();
-    app.UseAuthorization();
-    app.MapControllers();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
-    app.MapFallbackToFile("/giris.html");
-    app.Run();
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.MapFallbackToFile("/giris.html");
+app.Run();
