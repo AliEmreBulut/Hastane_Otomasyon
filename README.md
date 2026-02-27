@@ -1,4 +1,4 @@
-﻿# 🏥 Hastane Otomasyon Sistemi (Hospital Management System)
+# 🏥 Hastane Otomasyon Sistemi (Hospital Management System)
 
 Bu proje, hastane süreçlerini dijitalleştirmek, hasta-doktor etkileşimini kolaylaştırmak ve sistem yöneticilerine tam kontrol sağlamak amacıyla geliştirilmiş kapsamlı bir **Full-Stack** web uygulamasıdır. Backend tarafında **ASP.NET Core Web API**, veritabanı yönetiminde **Entity Framework Core (MariaDB)** ve frontend tarafında modern, dinamik bir **Vanilla JS + Bootstrap** mimarisi kullanılmıştır. Proje, **Docker** kullanılarak tamamen konteynerize edilmiş olup tek bir komutla her ortamda çalışmaya hazırdır.
 
@@ -47,3 +47,25 @@ Proje tamamen Dockerize edilmiştir. Bilgisayarınızda herhangi bir .NET SDK ve
 ```bash
 git clone [https://github.com/AliEmreBulut/Hastane_Otomasyon.git](https://github.com/AliEmreBulut/Hastane_Otomasyon.git)
 cd Hastane_Otomasyon/Hastane_Otomasyon
+```
+*(Not: İçeriğinde `docker-compose.yml` dosyasının bulunduğu ana dizinde olduğunuzdan emin olun).*
+
+**2. Sistemi Ayağa Kaldırın:**
+Terminalde aşağıdaki komutu çalıştırın:
+```bash
+docker compose up --build -d
+```
+*Bu komut; backend uygulamasını derler, MariaDB veritabanını ayağa kaldırır ve `init.sql` dosyasını okuyarak veritabanı tablolarını ve örnek verileri otomatik olarak oluşturur.*
+
+**3. Uygulamaya Erişin:**
+İşlem tamamlandığında (servisler `Running` durumuna geçtiğinde) tarayıcınızı açın ve şu adrese gidin:
+👉 **http://localhost:8080**
+
+---
+
+### 🔑 Test Hesapları
+Sistemi hızlıca test edebilmeniz için veritabanı aşağıdaki varsayılan hesaplarla (ve örnek randevu/reçete verileriyle) kurulur:
+
+* **Admin Girişi:** Kullanıcı Adı: `admin` | Şifre: `123456`
+* **Doktor Girişi:** Kullanıcı Adı: `dr.ayse` | Şifre: `123456`
+* **Hasta Girişi:** Kullanıcı Adı: `hasta.ali` | Şifre: `123456`
