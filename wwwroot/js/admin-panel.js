@@ -24,26 +24,25 @@ async function loadDashboard() {
         // Doktorlar Tablosu
         const tDoctors = $("tDoctors");
         if (tDoctors) {
-            tDoctors.innerHTML = (doctors || []).map(d => `
-            <tr class="user-row" 
-                data-doc='${JSON.stringify(d).replace(/'/g, "&#39;")}'>
-                <td class="ps-4"><strong>${d.firstName || ''} ${d.lastName || ''}</strong></td>
-                <td>${d.department?.departmentName || d.Department?.DepartmentName || 'Belirtilmemiş'}</td>
-                <td>${d.email || '-'}</td>
-                <td class="text-center"><span class="badge bg-success">Aktif</span></td>
-                <td class="text-end pe-4">
-                    <button onclick="deleteUser(${d.userID || d.UserID}, 'Doctor')" class="btn btn-danger btn-sm shadow-sm">Sil</button>
-                </td>
-            </tr>
-        `).join("") || `<tr><td colspan="5" class="text-center text-muted py-3">Kayıtlı doktor yok</td></tr>`;
+            tDoctors.innerHTML = (doctors || []).map(d => {
+                const statusBadge = (d.isActive === false || d.IsActive === false)
+                    ? '<span class="badge bg-danger">Pasif</span>'
+                    : '<span class="badge bg-success">Aktif</span>';
 
-            document.querySelector("#tDoctors").addEventListener("click", (e) => {
-                const btn = e.target.closest(".btn-edit-doc");
-                if (!btn) return;
-                const row = btn.closest("tr[data-doc]");
-                const doc = JSON.parse(row.dataset.doc);
-                openEditDoctorModal(doc);
-            });
+                const actionButton = (d.isActive === false || d.IsActive === false)
+                    ? `<button class="btn btn-secondary btn-sm shadow-sm" disabled>Kaldırıldı</button>`
+                    : `<button onclick="deleteUser(${d.userID || d.UserID}, 'Doctor')" class="btn btn-danger btn-sm shadow-sm">Kaldır</button>`;
+
+                return `
+                <tr class="user-row" data-doc='${JSON.stringify(d).replace(/'/g, "&#39;")}'>
+                    <td class="ps-4"><strong>${d.firstName || ''} ${d.lastName || ''}</strong></td>
+                    <td>${d.department?.departmentName || d.Department?.DepartmentName || 'Belirtilmemiş'}</td>
+                    <td>${d.email || '-'}</td>
+                    <td class="text-center">${statusBadge}</td>
+                    <td class="text-end pe-4">${actionButton}</td>
+                </tr>
+                `;
+            }).join("") || `<tr><td colspan="5" class="text-center text-muted py-3">Kayıtlı doktor yok</td></tr>`;
         }
 
         // Hastalar Tablosu

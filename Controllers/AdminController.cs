@@ -196,18 +196,16 @@ namespace Hastane_Otomasyon.Controllers
             return CreatedAtAction(nameof(GetDoctor), new { id = doctor.UserID }, doctor);
         }
 
-        // Delete Doctor by ID
         [HttpDelete("doctor/{id}")]
         public async Task<IActionResult> DeleteDoctor(int id)
         {
-            
             var doctor = await _context.Doctor.FirstOrDefaultAsync(d => d.UserID == id);
             if (doctor == null)
             {
                 return NotFound("Doctor not found.");
             }
 
-            
+            doctor.IsActive = false;
 
             var futureAppointments = await _context.Appointment
                 .Where(a => a.DoctorID == id && a.Date >= DateTime.Today && a.Status == "Onaylandı")
@@ -216,7 +214,6 @@ namespace Hastane_Otomasyon.Controllers
             foreach (var appt in futureAppointments)
             {
                 appt.Status = "İptal Edildi";
-
             }
 
             await _context.SaveChangesAsync();
