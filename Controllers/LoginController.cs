@@ -6,7 +6,7 @@ using System.Linq;
 namespace Hastane_Otomasyon.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

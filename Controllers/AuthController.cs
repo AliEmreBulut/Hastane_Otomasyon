@@ -6,7 +6,7 @@ using Hastane_Otomasyon.Models;
 namespace Hastane_Otomasyon.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
