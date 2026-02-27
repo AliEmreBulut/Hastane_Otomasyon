@@ -1,4 +1,4 @@
-const API_BASE = (window.API_BASE || location.origin).replace(/\/+$/, "");
+const API_BASE = "/api";
 
 async function request(path, { method = "GET", body, headers = {} } = {}) {
     const res = await fetch(`${API_BASE}${path}`, {
@@ -18,7 +18,7 @@ async function request(path, { method = "GET", body, headers = {} } = {}) {
 
 export const AuthAPI = {
     me: async (userId) => {
-        const res = await fetch(`/Auth/me?userId=${encodeURIComponent(userId)}`, { credentials: "include" });
+        const res = await fetch(`${API_BASE}/Auth/me?userId=${encodeURIComponent(userId)}`, { credentials: "include" });
         if (!res.ok) throw new Error("Kimlik doðrulama baþarýsýz");
         return await res.json();
     }

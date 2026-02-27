@@ -1,5 +1,5 @@
-const API_BASE = (window.API_BASE || "https://localhost:7185/api").replace(/\/+$/, "");
-const LOGIN_URL = new URL("/Login/login", location.origin).href;
+const API_BASE = "/api";
+const LOGIN_URL = new URL("/api/Login/login", location.origin).href;
 
 const PANEL_PATHS = {
     Patient: "/sayfalar/hasta-panel.html",

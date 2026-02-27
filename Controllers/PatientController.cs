@@ -111,6 +111,7 @@ public class PatientController : ControllerBase
 
         return Ok(appointments);
     }
+
     [HttpPost("TakeAppointment")]
     public async Task<IActionResult> TakeAppointment([FromBody] AppointmentCreateDTO request)
     {
